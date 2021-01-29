@@ -74,6 +74,12 @@ public class SpringConfig implements WebMvcConfigurer {
     // @Bean methods can reference other @Bean methods in the same class by
     // calling them directly. (https://www.journaldev.com/21577/spring-bean-annotation)
 
+
+    // JdbcTemplate is something like a wrapper around JDBC. JdbcTemplate is provided by Spring.
+    // We use JdbcTemplate because JDBC has some problems. like:
+    // - a lot of code (creating connection, Statement, dealing with ResultSet)
+    // - code is duplicated from method to method
+    // - uninformative SQLException which we need to handle everywhere with try..catch
     @Bean
     public JdbcTemplate jdbcTemplate() {
         return new JdbcTemplate(dataSource());
